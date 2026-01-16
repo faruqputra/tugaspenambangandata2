@@ -2,6 +2,36 @@ import streamlit as st
 import joblib
 import numpy as np
 
+# ================= TAMPILAN =================
+st.set_page_config(
+    page_title="Prediksi Osteoporosis",
+    page_icon="🦴",
+    layout="centered"
+)
+
+st.markdown("""
+<style>
+.main {background-color:#f8fafc;}
+h1 {color:#0f172a; text-align:center;}
+.block-container {padding-top:2rem;}
+.card {
+    background:white;
+    padding:20px;
+    border-radius:16px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.08);
+    margin-bottom:20px;
+}
+.stButton>button {
+    background:#2563eb;
+    color:white;
+    border-radius:10px;
+    padding:10px 20px;
+    font-weight:bold;
+}
+.stButton>button:hover {background:#1d4ed8;}
+</style>
+""", unsafe_allow_html=True)
+
 model = joblib.load("model_dt.pkl")
 scaler = joblib.load("scaler.pkl")  # hapus kalau training tanpa scaler
 
