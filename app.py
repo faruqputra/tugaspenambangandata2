@@ -359,19 +359,19 @@ with col1:
     
     age = st.number_input("Usia (tahun)", min_value=18, max_value=100, value=30, help="Masukkan usia dalam tahun")
     gender = st.selectbox("Jenis Kelamin", ["Perempuan", "Laki-laki"])
-    race = st.selectbox("Ras/Etnis", ["Afrika-Amerika", "Asia", "Kaukasia"])
-    weight = st.selectbox("Kategori Berat Badan", ["Normal", "Kurus"])
+    race = st.selectbox("Apa ras atau etnis anda?", ["Afrika-Amerika", "Asia", "Kaukasia"])
+    weight = st.selectbox("Bagaimana status berat badan anda?", ["Normal", "Kurus"])
     
     st.markdown('</div>', unsafe_allow_html=True)
     
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
     st.markdown('<div class="section-title">Riwayat Medis</div>', unsafe_allow_html=True)
     
-    hormonal = st.selectbox("Status Hormonal", ["Normal", "Pasca menopause"])
-    family = st.selectbox("Riwayat Keluarga Osteoporosis", ["Tidak", "Ya"])
-    medical = st.selectbox("Kondisi Medis Penyerta", ["Tidak ada", "Gangguan tiroid", "Radang sendi"])
-    meds = st.selectbox("Penggunaan Obat-obatan", ["Tidak ada", "Kortikosteroid"])
-    fracture = st.selectbox("Riwayat Fraktur/Patah Tulang", ["Tidak", "Ya"])
+    hormonal = st.selectbox("Apakah anda mengalami perubahan hormonal yang signifikan (misalnya menopause)?", ["Normal", "Pasca menopause"])
+    family = st.selectbox("Apakah ada riwayat keluarga osteoporosis atau patah tulang?", ["Tidak", "Ya"])
+    medical = st.selectbox("Apakah anda memiliki kondisi medis tertentu?", ["Tidak ada", "Gangguan tiroid", "Radang sendi"])
+    meds = st.selectbox("Apakah anda mengkonsumsi obat-obatan tertentu?", ["Tidak ada", "Kortikosteroid"])
+    fracture = st.selectbox("Apakah anda mengalami patah tulang sebelumnya?", ["Tidak", "Ya"])
     
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -379,17 +379,17 @@ with col2:
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
     st.markdown('<div class="section-title">Asupan Nutrisi</div>', unsafe_allow_html=True)
     
-    calcium = st.selectbox("Asupan Kalsium Harian", ["Cukup", "Rendah"])
-    vitd = st.selectbox("Asupan Vitamin D", ["Cukup", "Tidak cukup"])
+    calcium = st.selectbox("Bagaimana tingkat asupan kalsium harian anda ( misalnya dari susu, keju, atau suplemen)?", ["Cukup", "Rendah"])
+    vitd = st.selectbox("Bagaimana tingkat asupan Vitamin D anda ( dari makanan, suplemen, atau sinar matahari )?", ["Cukup", "Tidak cukup"])
     
     st.markdown('</div>', unsafe_allow_html=True)
     
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
     st.markdown('<div class="section-title">Gaya Hidup & Kebiasaan</div>', unsafe_allow_html=True)
     
-    activity = st.selectbox("Tingkat Aktivitas Fisik", ["Aktif", "Kurang aktif"])
-    smoke = st.selectbox("Status Merokok", ["Tidak", "Ya"])
-    alkohol = st.selectbox("Konsumsi Alkohol", ["Tidak", "Sedang"])
+    activity = st.selectbox("Seberapa aktif anda dalam melakukan aktifitas fisik atau olahraga? ", ["Aktif", "Kurang aktif"])
+    smoke = st.selectbox("Apakah anda seorang perokok? ", ["Tidak", "Ya"])
+    alkohol = st.selectbox("Bagaimana kebiasaan konsumsi alkohol anda?", ["Tidak", "Sedang"])
     
     st.markdown('</div>', unsafe_allow_html=True)
 
