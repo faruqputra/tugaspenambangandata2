@@ -14,215 +14,231 @@ st.set_page_config(
 st.markdown("""
 <style>
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-/* Background dengan gradient */
+/* Background Modern */
 div[data-testid="stAppViewContainer"] {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    font-family: 'Inter', sans-serif;
-}
-
-div[data-testid="stAppViewContainer"]::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-    pointer-events: none;
-    z-index: 0;
+    background: linear-gradient(to bottom right, #0f172a, #1e293b, #334155);
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Container utama */
 .block-container {
-    padding-top: 3rem !important;
+    padding-top: 2rem !important;
     padding-bottom: 3rem !important;
-    max-width: 1200px !important;
+    max-width: 1400px !important;
 }
 
-/* Header Card */
-.header-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+/* Header */
+.main-header {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    padding: 3rem 2rem;
+    border-radius: 24px;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
+}
+
+.main-header h1 {
+    color: white !important;
+    font-size: 3.5rem !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.main-header p {
+    color: rgba(255,255,255,0.9) !important;
+    font-size: 1.2rem !important;
+    margin-top: 0.5rem !important;
+    font-weight: 400 !important;
+}
+
+/* Card Modern */
+.modern-card {
+    background: rgba(255, 255, 255, 0.98);
     padding: 2.5rem;
     border-radius: 24px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     margin-bottom: 2rem;
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    height: 100%;
 }
 
-/* Card dengan glassmorphism */
-.glass-card {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 2rem;
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    margin-bottom: 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.glass-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-}
-
-/* Judul */
-h1 {
-    color: #1a1a2e;
-    font-size: 3rem !important;
+/* Section Title */
+.section-title {
+    color: #1e293b !important;
+    font-size: 1.8rem !important;
     font-weight: 700 !important;
-    margin-bottom: 0.5rem !important;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    margin-bottom: 2rem !important;
+    padding-bottom: 1rem !important;
+    border-bottom: 3px solid #3b82f6 !important;
 }
 
-.subtitle {
-    color: #64748b;
-    font-size: 1.1rem;
-    font-weight: 400;
-    margin-bottom: 0;
-}
-
-/* Sub-headers */
-h2, h3 {
-    color: #1e293b !important;
-    font-weight: 600 !important;
-}
-
-.stSubheader {
-    color: #1e293b !important;
-    font-size: 1.5rem !important;
-    font-weight: 600 !important;
-    margin-bottom: 1.5rem !important;
-}
-
-/* Input fields styling */
+/* Input Styling */
 .stSelectbox label, .stNumberInput label {
-    color: #334155 !important;
-    font-weight: 500 !important;
-    font-size: 0.95rem !important;
+    color: #1e293b !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
     margin-bottom: 0.5rem !important;
 }
 
 .stSelectbox > div > div, .stNumberInput > div > div {
-    border-radius: 12px !important;
+    border-radius: 14px !important;
     border: 2px solid #e2e8f0 !important;
-    background: white !important;
+    background: #f8fafc !important;
     transition: all 0.3s ease !important;
+    font-size: 1rem !important;
 }
 
 .stSelectbox > div > div:hover, .stNumberInput > div > div:hover {
-    border-color: #667eea !important;
+    border-color: #3b82f6 !important;
+    background: white !important;
 }
 
 .stSelectbox > div > div:focus-within, .stNumberInput > div > div:focus-within {
-    border-color: #667eea !important;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+    border-color: #3b82f6 !important;
+    background: white !important;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1) !important;
 }
 
-/* Tombol prediksi */
+/* Button Premium */
 .stButton > button {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%) !important;
     color: white !important;
-    border-radius: 12px !important;
-    padding: 0.75rem 2rem !important;
-    font-weight: 600 !important;
-    font-size: 1.1rem !important;
+    border-radius: 16px !important;
+    padding: 1.2rem 3rem !important;
+    font-weight: 700 !important;
+    font-size: 1.2rem !important;
     border: none !important;
     width: 100% !important;
-    transition: all 0.3s ease !important;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4) !important;
-    margin-top: 1rem !important;
+    transition: all 0.4s ease !important;
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4) !important;
+    margin-top: 2rem !important;
+    letter-spacing: 0.5px !important;
 }
 
 .stButton > button:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5) !important;
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow: 0 12px 35px rgba(59, 130, 246, 0.6) !important;
 }
 
 .stButton > button:active {
-    transform: translateY(0) !important;
+    transform: translateY(-1px) scale(1.01) !important;
 }
 
-/* Alert boxes */
-.element-container div[data-testid="stMarkdownContainer"] > div[data-testid="stAlert"] {
-    border-radius: 12px !important;
-    padding: 1.25rem !important;
-    margin: 1rem 0 !important;
-    border-left: 4px solid !important;
-    font-weight: 500 !important;
+/* Result Box */
+.result-box {
+    padding: 2rem;
+    border-radius: 20px;
+    margin: 1.5rem 0;
+    border-left: 6px solid;
+    font-size: 1.1rem;
+    font-weight: 600;
 }
 
-div[data-baseweb="notification"][kind="error"] {
-    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%) !important;
-    border-left-color: #ef4444 !important;
+.result-positive {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    border-left-color: #ef4444;
+    color: #991b1b;
 }
 
-div[data-baseweb="notification"][kind="success"] {
-    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%) !important;
-    border-left-color: #10b981 !important;
+.result-negative {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    border-left-color: #10b981;
+    color: #065f46;
 }
 
-/* List styling */
-.stMarkdown ul {
-    list-style: none !important;
-    padding-left: 0 !important;
+.result-waiting {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    border-left-color: #3b82f6;
+    color: #1e40af;
 }
 
-.stMarkdown li {
-    padding: 0.5rem 0 !important;
-    color: #475569 !important;
-    font-size: 0.95rem !important;
-    display: flex !important;
-    align-items: center !important;
+/* Factor List */
+.factor-title {
+    color: #1e293b;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 2rem 0 1.5rem 0;
+    padding-top: 1.5rem;
+    border-top: 2px solid #e2e8f0;
 }
 
-.stMarkdown li::before {
-    content: "→" !important;
-    margin-right: 0.75rem !important;
-    color: #667eea !important;
-    font-weight: bold !important;
-    font-size: 1.2rem !important;
+.factor-item {
+    background: #f8fafc;
+    padding: 1rem 1.5rem;
+    margin: 0.8rem 0;
+    border-radius: 12px;
+    border-left: 4px solid #3b82f6;
+    color: #334155;
+    font-size: 1.05rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
-/* Section headers dalam hasil */
-.stMarkdown strong {
-    color: #1e293b !important;
-    font-size: 1.1rem !important;
-    display: block !important;
-    margin: 1rem 0 0.5rem 0 !important;
+.factor-item:hover {
+    background: #f1f5f9;
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* Responsif untuk mobile */
+.risk-factor {
+    border-left-color: #ef4444;
+}
+
+.protective-factor {
+    border-left-color: #10b981;
+}
+
+/* Summary Box */
+.summary-box {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 16px;
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+}
+
+.recommendation-box {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 1.5rem;
+    border-radius: 16px;
+    margin-top: 1.5rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border-left: 5px solid #f59e0b;
+}
+
+/* Responsif */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2rem !important;
+    .main-header h1 {
+        font-size: 2.2rem !important;
     }
     
-    .header-card {
+    .main-header p {
+        font-size: 1rem !important;
+    }
+    
+    .modern-card {
         padding: 1.5rem !important;
     }
     
-    .glass-card {
-        padding: 1.5rem !important;
-    }
-    
-    .block-container {
-        padding-top: 2rem !important;
+    .section-title {
+        font-size: 1.4rem !important;
     }
 }
 
-/* Animasi loading */
-@keyframes fadeIn {
+/* Animasi */
+@keyframes slideIn {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
@@ -230,29 +246,14 @@ div[data-baseweb="notification"][kind="success"] {
     }
 }
 
-.glass-card {
-    animation: fadeIn 0.5s ease-out;
+.modern-card {
+    animation: slideIn 0.6s ease-out;
 }
 
-/* Icon emoji styling */
-.header-icon {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    display: block;
-}
-
-/* Spacing adjustments */
-.element-container {
-    margin-bottom: 0.5rem !important;
-}
-
-/* Divider */
-hr {
-    margin: 2rem 0 !important;
-    border: none !important;
-    height: 1px !important;
-    background: linear-gradient(90deg, transparent, #e2e8f0, transparent) !important;
-}
+/* Hide Streamlit Branding */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
 </style>
 """, unsafe_allow_html=True)
 
@@ -262,34 +263,32 @@ scaler = joblib.load("scaler.pkl")
 
 # ================= HEADER =================
 st.markdown("""
-<div class='header-card'>
-    <span class='header-icon'>🦴</span>
+<div class='main-header'>
     <h1>Prediksi Osteoporosis</h1>
-    <p class='subtitle'>Aplikasi Prediksi Berbasis Decision Tree untuk Deteksi Dini Osteoporosis</p>
+    <p>Sistem Deteksi Dini Berbasis Decision Tree</p>
 </div>
 """, unsafe_allow_html=True)
 
 # ================= LAYOUT DUA KOLOM =================
-col1, col2 = st.columns([1, 1], gap="large")
+col1, col2 = st.columns([1.1, 1], gap="large")
 
 with col1:
-    st.markdown("<div class='glass-card'>", unsafe_allow_html=True)
-    st.subheader("📝 Data Pasien")
-    st.markdown("---")
+    st.markdown("<div class='modern-card'>", unsafe_allow_html=True)
+    st.markdown("<h2 class='section-title'>Data Pasien</h2>", unsafe_allow_html=True)
 
-    age = st.number_input("Usia (tahun)", 18, 100, 30, help="Masukkan usia pasien")
+    age = st.number_input("Usia (tahun)", 18, 100, 30)
     gender = st.selectbox("Jenis Kelamin", ["Perempuan", "Laki-laki"])
     hormonal = st.selectbox("Perubahan Hormon", ["Normal", "Pasca menopause"])
-    family = st.selectbox("Riwayat Keluarga Osteoporosis", ["Tidak", "Ya"])
+    family = st.selectbox("Riwayat Keluarga", ["Tidak", "Ya"])
     race = st.selectbox("Ras/Etnis", ["Afrika-Amerika", "Asia", "Kaukasia"])
     weight = st.selectbox("Status Berat Badan", ["Normal", "Kurus"])
     calcium = st.selectbox("Asupan Kalsium", ["Cukup", "Rendah"])
     vitd = st.selectbox("Asupan Vitamin D", ["Cukup", "Tidak cukup"])
     activity = st.selectbox("Aktivitas Fisik", ["Aktif", "Kurang aktif"])
-    smoke = st.selectbox("Status Merokok", ["Tidak", "Ya"])
+    smoke = st.selectbox("Merokok", ["Tidak", "Ya"])
     alkohol = st.selectbox("Konsumsi Alkohol", ["Tidak", "Sedang"])
     medical = st.selectbox("Kondisi Medis", ["Gangguan tiroid", "Tidak ada", "Radang sendi"])
-    meds = st.selectbox("Penggunaan Obat-obatan", ["Kortikosteroid", "Tidak ada"])
+    meds = st.selectbox("Obat-obatan", ["Kortikosteroid", "Tidak ada"])
     fracture = st.selectbox("Riwayat Patah Tulang", ["Tidak", "Ya"])
 
     st.markdown("</div>", unsafe_allow_html=True)
@@ -319,106 +318,399 @@ data_scaled = scaler.transform(data)
 
 # ================= HASIL PREDIKSI =================
 with col2:
-    st.markdown("<div class='glass-card'>", unsafe_allow_html=True)
-    st.subheader("📊 Hasil Prediksi")
-    st.markdown("---")
+    st.markdown("<div class='modern-card'>", unsafe_allow_html=True)
+    st.markdown("<h2 class='section-title'>Hasil Analisis</h2>", unsafe_allow_html=True)
     
-    if st.button("🔍 Mulai Prediksi"):
+    if st.button("PREDIKSI SEKARANG"):
         with st.spinner('Menganalisis data...'):
             hasil = model.predict(data_scaled)[0]
 
             if hasil == 1:
-                st.error("⚠️ **Terdeteksi Osteoporosis**")
-                st.markdown("**Faktor Risiko yang Teridentifikasi:**")
+                st.markdown("<div class='result-box result-positive'>TERDETEKSI OSTEOPOROSIS</div>", unsafe_allow_html=True)
+                
+                st.markdown("<div class='factor-title'>Faktor Risiko Teridentifikasi</div>", unsafe_allow_html=True)
                 
                 faktor_count = 0
                 if age > 50: 
-                    st.write("- Usia di atas 50 tahun")
+                    st.markdown("<div class='factor-item risk-factor'>Usia di atas 50 tahun</div>", unsafe_allow_html=True)
                     faktor_count += 1
                 if family == "Ya": 
-                    st.write("- Riwayat keluarga dengan osteoporosis")
+                    st.markdown("<div class='factor-item risk-factor'>Ada riwayat keluarga osteoporosis</div>", unsafe_allow_html=True)
                     faktor_count += 1
                 if hormonal == "Pasca menopause": 
-                    st.write("- Status pasca menopause")
+                    st.markdown("<div class='factor-item risk-factor'>Status pasca menopause</div>", unsafe_allow_html=True)
                     faktor_count += 1
                 if weight == "Kurus": 
-                    st.write("- Berat badan di bawah normal")
+                    st.markdown("<div class='factor-item risk-factor'>Berat badan kurang</div>", unsafe_allow_html=True)
                     faktor_count += 1
                 if calcium == "Rendah": 
-                    st.write("- Asupan kalsium tidak mencukupi")
+                    st.markdown("<div class='factor-item risk-factor'>Asupan kalsium rendah</div>", unsafe_allow_html=True)
                     faktor_count += 1
                 if vitd == "Tidak cukup": 
-                    st.write("- Asupan vitamin D kurang")
+                    st.markdown("<div class='factor-item risk-factor'>Kekurangan vitamin D</div>", unsafe_allow_html=True)
                     faktor_count += 1
                 if activity == "Kurang aktif": 
-                    st.write("- Aktivitas fisik rendah")
+                    st.markdown("<div class='factor-item risk-factor'>Aktivitas fisik kurang</div>", unsafe_allow_html=True)
                     faktor_count += 1
                 if smoke == "Ya": 
-                    st.write("- Kebiasaan merokok aktif")
+                    st.markdown("<div class='factor-item risk-factor'>Kebiasaan merokok</div>", unsafe_allow_html=True)
                     faktor_count += 1
                 if alkohol == "Sedang": 
-                    st.write("- Konsumsi alkohol reguler")
+                    st.markdown("<div class='factor-item risk-factor'>Konsumsi alkohol</div>", unsafe_allow_html=True)
                     faktor_count += 1
                 if fracture == "Ya": 
-                    st.write("- Riwayat patah tulang sebelumnya")
+                    st.markdown("<div class='factor-item risk-factor'>Riwayat patah tulang</div>", unsafe_allow_html=True)
                     faktor_count += 1
                 
-                st.markdown("---")
-                st.info(f"📌 **Total Faktor Risiko:** {faktor_count} faktor teridentifikasi")
-                st.warning("💡 **Rekomendasi:** Segera konsultasikan dengan dokter untuk pemeriksaan lebih lanjut.")
+                st.markdown(f"<div class='summary-box'>Total {faktor_count} Faktor Risiko Ditemukan</div>", unsafe_allow_html=True)
+                st.markdown("<div class='recommendation-box'>Segera konsultasi dengan dokter untuk pemeriksaan lebih lanjut</div>", unsafe_allow_html=True)
                 
             else:
-                st.success("✅ **Tidak Terdeteksi Osteoporosis**")
-                st.markdown("**Faktor Protektif yang Mendukung:**")
+                st.markdown("<div class='result-box result-negative'>TIDAK TERDETEKSI OSTEOPOROSIS</div>", unsafe_allow_html=True)
+                
+                st.markdown("<div class='factor-title'>Faktor Protektif</div>", unsafe_allow_html=True)
                 
                 faktor_count = 0
                 if age <= 50: 
-                    st.write("- Usia masih dalam rentang optimal")
+                    st.markdown("<div class='factor-item protective-factor'>Usia masih optimal</div>", unsafe_allow_html=True)
                     faktor_count += 1
                 if family == "Tidak": 
-                    st.write("- Tidak ada riwayat keluarga")
+                    st.markdown("<div class='factor-item protective-factor'>Tidak ada riwayat keluarga</div>", unsafe_allow_html=True)
                     faktor_count += 1
                 if hormonal == "Normal": 
-                    st.write("- Status hormonal normal")
+                    st.markdown("<div class='factor-item protective-factor'>Hormon normal</div>", unsafe_allow_html=True)
                     faktor_count += 1
                 if weight == "Normal": 
-                    st.write("- Berat badan ideal")
+                    st.markdown("<div class='factor-item protective-factor'>Berat badan ideal</div>", unsafe_allow_html=True)
                     faktor_count += 1
                 if calcium == "Cukup": 
-                    st.write("- Asupan kalsium mencukupi")
+                    st.markdown("<div class='factor-item protective-factor'>Asupan kalsium cukup</div>", unsafe_allow_html=True)
                     faktor_count += 1
                 if vitd == "Cukup": 
-                    st.write("- Asupan vitamin D optimal")
+                    st.markdown("<div class='factor-item protective-factor'>Vitamin D tercukupi</div>", unsafe_allow_html=True)
                     faktor_count += 1
                 if activity == "Aktif": 
-                    st.write("- Aktivitas fisik teratur")
+                    st.markdown("<div class='factor-item protective-factor'>Aktivitas fisik baik</div>", unsafe_allow_html=True)
                     faktor_count += 1
                 if smoke == "Tidak": 
-                    st.write("- Tidak merokok")
+                    st.markdown("<div class='factor-item protective-factor'>Tidak merokok</div>", unsafe_allow_html=True)
                     faktor_count += 1
                 if alkohol == "Tidak": 
-                    st.write("- Tidak konsumsi alkohol")
+                    st.markdown("<div class='factor-item protective-factor'>Tidak konsumsi alkohol</div>", unsafe_allow_html=True)
                     faktor_count += 1
                 if fracture == "Tidak": 
-                    st.write("- Tidak ada riwayat patah tulang")
+                    st.markdown("<div class='factor-item protective-factor'>Tidak ada riwayat fraktur</div>", unsafe_allow_html=True)
                     faktor_count += 1
                 
-                st.markdown("---")
-                st.info(f"📌 **Total Faktor Protektif:** {faktor_count} faktor mendukung")
-                st.success("💡 **Saran:** Pertahankan gaya hidup sehat dan lakukan pemeriksaan rutin.")
+                st.markdown(f"<div class='summary-box'>Total {faktor_count} Faktor Protektif Ditemukan</div>", unsafe_allow_html=True)
+                st.markdown("<div class='recommendation-box'>Pertahankan pola hidup sehat dan lakukan pemeriksaan rutin</div>", unsafe_allow_html=True)
 
     else:
-        st.info("👆 Klik tombol **Mulai Prediksi** untuk melihat hasil analisis")
+        st.markdown("<div class='result-box result-waiting'>Klik tombol di bawah untuk memulai prediksi</div>", unsafe_allow_html=True)
     
     st.markdown("</div>", unsafe_allow_html=True)
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%) !important;
+    color: white !important;
+    border-radius: 16px !important;
+    padding: 1.2rem 3rem !important;
+    font-weight: 700 !important;
+    font-size: 1.2rem !important;
+    border: none !important;
+    width: 100% !important;
+    transition: all 0.4s ease !important;
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4) !important;
+    margin-top: 2rem !important;
+    letter-spacing: 0.5px !important;
+}
 
-# ================= FOOTER =================
-st.markdown("<br>", unsafe_allow_html=True)
+.stButton > button:hover {
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow: 0 12px 35px rgba(59, 130, 246, 0.6) !important;
+}
+
+.stButton > button:active {
+    transform: translateY(-1px) scale(1.01) !important;
+}
+
+/* Result Box */
+.result-box {
+    padding: 2rem;
+    border-radius: 20px;
+    margin: 1.5rem 0;
+    border-left: 6px solid;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.result-positive {
+    background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+    border-left-color: #ef4444;
+    color: #991b1b;
+}
+
+.result-negative {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    border-left-color: #10b981;
+    color: #065f46;
+}
+
+.result-waiting {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    border-left-color: #3b82f6;
+    color: #1e40af;
+}
+
+/* Factor List */
+.factor-title {
+    color: #1e293b;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 2rem 0 1.5rem 0;
+    padding-top: 1.5rem;
+    border-top: 2px solid #e2e8f0;
+}
+
+.factor-item {
+    background: #f8fafc;
+    padding: 1rem 1.5rem;
+    margin: 0.8rem 0;
+    border-radius: 12px;
+    border-left: 4px solid #3b82f6;
+    color: #334155;
+    font-size: 1.05rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.factor-item:hover {
+    background: #f1f5f9;
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.risk-factor {
+    border-left-color: #ef4444;
+}
+
+.protective-factor {
+    border-left-color: #10b981;
+}
+
+/* Summary Box */
+.summary-box {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 16px;
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+}
+
+.recommendation-box {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 1.5rem;
+    border-radius: 16px;
+    margin-top: 1.5rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border-left: 5px solid #f59e0b;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .main-header h1 {
+        font-size: 2.2rem !important;
+    }
+    
+    .main-header p {
+        font-size: 1rem !important;
+    }
+    
+    .modern-card {
+        padding: 1.5rem !important;
+    }
+    
+    .section-title {
+        font-size: 1.4rem !important;
+    }
+}
+
+/* Animasi */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modern-card {
+    animation: slideIn 0.6s ease-out;
+}
+
+/* Hide Streamlit Branding */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+</style>
+""", unsafe_allow_html=True)
+
+# ================= MODEL =================
+model = joblib.load("model_dt.pkl")
+scaler = joblib.load("scaler.pkl")
+
+# ================= HEADER =================
 st.markdown("""
-<div class='glass-card' style='text-align: center; padding: 1.5rem;'>
-    <p style='color: #64748b; margin: 0; font-size: 0.9rem;'>
-        ⚕️ <strong>Disclaimer:</strong> Hasil prediksi ini hanya sebagai alat bantu skrining awal. 
-        Konsultasikan dengan tenaga medis profesional untuk diagnosis yang akurat.
-    </p>
+<div class='main-header'>
+    <h1>Prediksi Osteoporosis</h1>
+    <p>Sistem Deteksi Dini Berbasis Decision Tree</p>
 </div>
 """, unsafe_allow_html=True)
+
+# ================= LAYOUT DUA KOLOM =================
+col1, col2 = st.columns([1.1, 1], gap="large")
+
+with col1:
+    st.markdown("<div class='modern-card'>", unsafe_allow_html=True)
+    st.markdown("<h2 class='section-title'>Data Pasien</h2>", unsafe_allow_html=True)
+
+    age = st.number_input("Usia (tahun)", 18, 100, 30)
+    gender = st.selectbox("Jenis Kelamin", ["Perempuan", "Laki-laki"])
+    hormonal = st.selectbox("Perubahan Hormon", ["Normal", "Pasca menopause"])
+    family = st.selectbox("Riwayat Keluarga", ["Tidak", "Ya"])
+    race = st.selectbox("Ras/Etnis", ["Afrika-Amerika", "Asia", "Kaukasia"])
+    weight = st.selectbox("Status Berat Badan", ["Normal", "Kurus"])
+    calcium = st.selectbox("Asupan Kalsium", ["Cukup", "Rendah"])
+    vitd = st.selectbox("Asupan Vitamin D", ["Cukup", "Tidak cukup"])
+    activity = st.selectbox("Aktivitas Fisik", ["Aktif", "Kurang aktif"])
+    smoke = st.selectbox("Merokok", ["Tidak", "Ya"])
+    alkohol = st.selectbox("Konsumsi Alkohol", ["Tidak", "Sedang"])
+    medical = st.selectbox("Kondisi Medis", ["Gangguan tiroid", "Tidak ada", "Radang sendi"])
+    meds = st.selectbox("Obat-obatan", ["Kortikosteroid", "Tidak ada"])
+    fracture = st.selectbox("Riwayat Patah Tulang", ["Tidak", "Ya"])
+
+    st.markdown("</div>", unsafe_allow_html=True)
+
+# ================= MAPPING =================
+map_gender = {"Perempuan": 0, "Laki-laki": 1}
+map_hormonal = {"Normal": 0, "Pasca menopause": 1}
+map_family = {"Tidak": 0, "Ya": 1}
+map_race = {"Afrika-Amerika": 0, "Asia": 1, "Kaukasia": 2}
+map_weight = {"Normal": 0, "Kurus": 1}
+map_calcium = {"Cukup": 0, "Rendah": 1}
+map_vitd = {"Tidak cukup": 0, "Cukup": 1}
+map_activity = {"Aktif": 0, "Kurang aktif": 1}
+map_smoke = {"Tidak": 0, "Ya": 1}
+map_alkohol = {"Tidak": 0, "Sedang": 1}
+map_medical = {"Gangguan tiroid": 0, "Tidak ada": 1, "Radang sendi": 2}
+map_meds = {"Kortikosteroid": 0, "Tidak ada": 1}
+map_fracture = {"Tidak": 0, "Ya": 1}
+
+data = np.array([[age,
+    map_gender[gender], map_hormonal[hormonal], map_family[family],
+    map_race[race], map_weight[weight], map_calcium[calcium], map_vitd[vitd],
+    map_activity[activity], map_smoke[smoke], map_alkohol[alkohol],
+    map_medical[medical], map_meds[meds], map_fracture[fracture]
+]])
+data_scaled = scaler.transform(data)
+
+# ================= HASIL PREDIKSI =================
+with col2:
+    st.markdown("<div class='modern-card'>", unsafe_allow_html=True)
+    st.markdown("<h2 class='section-title'>Hasil Analisis</h2>", unsafe_allow_html=True)
+    
+    if st.button("PREDIKSI SEKARANG"):
+        with st.spinner('Menganalisis data...'):
+            hasil = model.predict(data_scaled)[0]
+
+            if hasil == 1:
+                st.markdown("<div class='result-box result-positive'>TERDETEKSI OSTEOPOROSIS</div>", unsafe_allow_html=True)
+                
+                st.markdown("<div class='factor-title'>Faktor Risiko Teridentifikasi</div>", unsafe_allow_html=True)
+                
+                faktor_count = 0
+                if age > 50: 
+                    st.markdown("<div class='factor-item risk-factor'>Usia di atas 50 tahun</div>", unsafe_allow_html=True)
+                    faktor_count += 1
+                if family == "Ya": 
+                    st.markdown("<div class='factor-item risk-factor'>Ada riwayat keluarga osteoporosis</div>", unsafe_allow_html=True)
+                    faktor_count += 1
+                if hormonal == "Pasca menopause": 
+                    st.markdown("<div class='factor-item risk-factor'>Status pasca menopause</div>", unsafe_allow_html=True)
+                    faktor_count += 1
+                if weight == "Kurus": 
+                    st.markdown("<div class='factor-item risk-factor'>Berat badan kurang</div>", unsafe_allow_html=True)
+                    faktor_count += 1
+                if calcium == "Rendah": 
+                    st.markdown("<div class='factor-item risk-factor'>Asupan kalsium rendah</div>", unsafe_allow_html=True)
+                    faktor_count += 1
+                if vitd == "Tidak cukup": 
+                    st.markdown("<div class='factor-item risk-factor'>Kekurangan vitamin D</div>", unsafe_allow_html=True)
+                    faktor_count += 1
+                if activity == "Kurang aktif": 
+                    st.markdown("<div class='factor-item risk-factor'>Aktivitas fisik kurang</div>", unsafe_allow_html=True)
+                    faktor_count += 1
+                if smoke == "Ya": 
+                    st.markdown("<div class='factor-item risk-factor'>Kebiasaan merokok</div>", unsafe_allow_html=True)
+                    faktor_count += 1
+                if alkohol == "Sedang": 
+                    st.markdown("<div class='factor-item risk-factor'>Konsumsi alkohol</div>", unsafe_allow_html=True)
+                    faktor_count += 1
+                if fracture == "Ya": 
+                    st.markdown("<div class='factor-item risk-factor'>Riwayat patah tulang</div>", unsafe_allow_html=True)
+                    faktor_count += 1
+                
+                st.markdown(f"<div class='summary-box'>Total {faktor_count} Faktor Risiko Ditemukan</div>", unsafe_allow_html=True)
+                st.markdown("<div class='recommendation-box'>Segera konsultasi dengan dokter untuk pemeriksaan lebih lanjut</div>", unsafe_allow_html=True)
+                
+            else:
+                st.markdown("<div class='result-box result-negative'>TIDAK TERDETEKSI OSTEOPOROSIS</div>", unsafe_allow_html=True)
+                
+                st.markdown("<div class='factor-title'>Faktor Protektif</div>", unsafe_allow_html=True)
+                
+                faktor_count = 0
+                if age <= 50: 
+                    st.markdown("<div class='factor-item protective-factor'>Usia masih optimal</div>", unsafe_allow_html=True)
+                    faktor_count += 1
+                if family == "Tidak": 
+                    st.markdown("<div class='factor-item protective-factor'>Tidak ada riwayat keluarga</div>", unsafe_allow_html=True)
+                    faktor_count += 1
+                if hormonal == "Normal": 
+                    st.markdown("<div class='factor-item protective-factor'>Hormon normal</div>", unsafe_allow_html=True)
+                    faktor_count += 1
+                if weight == "Normal": 
+                    st.markdown("<div class='factor-item protective-factor'>Berat badan ideal</div>", unsafe_allow_html=True)
+                    faktor_count += 1
+                if calcium == "Cukup": 
+                    st.markdown("<div class='factor-item protective-factor'>Asupan kalsium cukup</div>", unsafe_allow_html=True)
+                    faktor_count += 1
+                if vitd == "Cukup": 
+                    st.markdown("<div class='factor-item protective-factor'>Vitamin D tercukupi</div>", unsafe_allow_html=True)
+                    faktor_count += 1
+                if activity == "Aktif": 
+                    st.markdown("<div class='factor-item protective-factor'>Aktivitas fisik baik</div>", unsafe_allow_html=True)
+                    faktor_count += 1
+                if smoke == "Tidak": 
+                    st.markdown("<div class='factor-item protective-factor'>Tidak merokok</div>", unsafe_allow_html=True)
+                    faktor_count += 1
+                if alkohol == "Tidak": 
+                    st.markdown("<div class='factor-item protective-factor'>Tidak konsumsi alkohol</div>", unsafe_allow_html=True)
+                    faktor_count += 1
+                if fracture == "Tidak": 
+                    st.markdown("<div class='factor-item protective-factor'>Tidak ada riwayat fraktur</div>", unsafe_allow_html=True)
+                    faktor_count += 1
+                
+                st.markdown(f"<div class='summary-box'>Total {faktor_count} Faktor Protektif Ditemukan</div>", unsafe_allow_html=True)
+                st.markdown("<div class='recommendation-box'>Pertahankan pola hidup sehat dan lakukan pemeriksaan rutin</div>", unsafe_allow_html=True)
+
+    else:
+        st.markdown("<div class='result-box result-waiting'>Klik tombol di bawah untuk memulai prediksi</div>", unsafe_allow_html=True)
+    
+    st.markdown("</div>", unsafe_allow_html=True)
