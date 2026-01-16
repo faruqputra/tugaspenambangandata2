@@ -12,54 +12,52 @@ st.set_page_config(
 # ================= CSS =================
 st.markdown("""
 <style>
-/* Background aplikasi */
+/* Background utama */
 div[data-testid="stAppViewContainer"] {
-    background-color: #f1f5f9;
-    color: #0f172a;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9fafb;
+    color: #111827;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-/* Card modern */
+/* Card sederhana */
 .card {
-    background: white;
-    padding: 25px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     margin-bottom: 20px;
 }
 
-/* Judul utama */
+/* Judul */
 h1 {
-    color: #1e40af;
+    color: #1f2937;
     text-align: center;
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-bottom: 0.2rem;
 }
 
 /* Subjudul */
 h2, h3 {
-    color: #1e293b;
+    color: #374151;
 }
 
-/* Tombol modern */
+/* Tombol minimalis */
 .stButton>button {
-    background: #2563eb;
+    background: #3b82f6;
     color: white;
-    border-radius: 12px;
-    padding: 12px 25px;
-    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 600;
     border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
     width: 100%;
+    transition: background 0.2s ease;
 }
 .stButton>button:hover {
-    background: #1d4ed8;
-    transform: scale(1.02);
+    background: #2563eb;
 }
 
 /* Input spacing */
-.css-1d391kg {margin-bottom: 15px;} /* untuk spacing input di Streamlit 1.30+ */
+.css-1d391kg {margin-bottom: 12px;} 
 </style>
 """, unsafe_allow_html=True)
 
@@ -69,7 +67,7 @@ scaler = joblib.load("scaler.pkl")
 
 # ================= HEADER =================
 st.markdown("<h1>🦴 Prediksi Osteoporosis</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align:center;color:gray;font-size:16px;'>Aplikasi Berbasis Decision Tree</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center;color:#6b7280;font-size:14px;'>Aplikasi Berbasis Decision Tree</p>", unsafe_allow_html=True)
 
 # ================= LAYOUT DUA KOLOM =================
 col1, col2 = st.columns([1,1])
