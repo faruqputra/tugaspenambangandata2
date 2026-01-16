@@ -9,104 +9,133 @@ st.set_page_config(
     layout="centered"
 )
 
+# ================= CSS =================
 st.markdown("""
 <style>
-.main {background-color:#f8fafc;}
-h1 {color:#0f172a; text-align:center;}
-.block-container {padding-top:2rem;}
+/* Background utama */
+div[data-testid="stAppViewContainer"] {
+    background-color: #f8fafc;
+}
+
+/* Container padding */
+div[data-testid="stBlock"] {
+    padding-top: 2rem;
+}
+
+/* Judul */
+h1 {
+    color: #0f172a;
+    text-align: center;
+}
+
+/* Card custom */
 .card {
-    background:white;
-    padding:20px;
-    border-radius:16px;
-    box-shadow:0 10px 20px rgba(0,0,0,0.08);
-    margin-bottom:20px;
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
 }
+
+/* Tombol custom */
 .stButton>button {
-    background:#2563eb;
-    color:white;
-    border-radius:10px;
-    padding:10px 20px;
-    font-weight:bold;
+    background: #2563eb;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
 }
-.stButton>button:hover {background:#1d4ed8;}
+.stButton>button:hover {
+    background: #1d4ed8;
+}
 </style>
 """, unsafe_allow_html=True)
 
+# ================= MODEL =================
 model = joblib.load("model_dt.pkl")
-scaler = joblib.load("scaler.pkl")  # hapus kalau training tanpa scaler
+scaler = joblib.load("scaler.pkl")
 
-st.title("Prediksi Osteoporosis")
+# ================= HEADER =================
+st.markdown("<h1>🦴 Prediksi Osteoporosis</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center;color:gray;'>Aplikasi Berbasis Decision Tree</p>", unsafe_allow_html=True)
 
-# ========== INPUT ==========
-usia = st.number_input("Usia (tahun)", 18, 100, 30, 1)
-jenis_kelamin = st.selectbox("Jenis Kelamin", ["Laki-laki", "Perempuan"])
-perubahan_hormon = st.selectbox("Perubahan Hormon", ["Normal", "Pasca menopause"])
-riwayat_keluarga = st.selectbox("Riwayat Keluarga Osteoporosis", ["Tidak", "Ya"])
-ras = st.selectbox("Ras / Etnis", ["Asia", "Kaukasia", "Afrika-Amerika"])
-berat_badan = st.selectbox("Berat Badan", ["Normal", "Kurus"])
-kalsium = st.selectbox("Asupan Kalsium", ["Cukup", "Rendah"])
-vitamin_d = st.selectbox("Asupan Vitamin D", ["Cukup", "Tidak cukup"])
-aktivitas = st.selectbox("Aktivitas Fisik", ["Aktif", "Kurang aktif"])
-merokok = st.selectbox("Merokok", ["Tidak", "Ya"])
+# ================= INPUT DATA =================
+st.markdown("<div class='card'>", unsafe_allow_html=True)
+st.subheader("📝 Data Pasien")
+
+age = st.number_input("Usia", 18, 100, 30)
+gender = st.selectbox("Jenis Kelamin", ["Perempuan", "Laki-laki"])
+hormonal = st.selectbox("Perubahan Hormon", ["Normal", "Pasca menopause"])
+family = st.selectbox("Riwayat Keluarga", ["Tidak", "Ya"])
+race = st.selectbox("Ras/Etnis", ["Afrika-Amerika", "Asia", "Kaukasia"])
+weight = st.selectbox("Berat Badan", ["Normal", "Kurus"])
+calcium = st.selectbox("Asupan Kalsium", ["Cukup", "Rendah"])
+vitd = st.selectbox("Asupan Vitamin D", ["Cukup", "Tidak cukup"])
+activity = st.selectbox("Aktivitas Fisik", ["Aktif", "Kurang aktif"])
+smoke = st.selectbox("Merokok", ["Tidak", "Ya"])
 alkohol = st.selectbox("Konsumsi Alkohol", ["Tidak", "Sedang"])
-kondisi_medis = st.selectbox("Kondisi Medis", ["Gangguan tiroid", "Tidak ada", "Radang sendi"])
-obat = st.selectbox("Obat-obatan", ["Kortikosteroid", "Tidak ada"])
-patah = st.selectbox("Riwayat Patah Tulang", ["Tidak", "Ya"])
+medical = st.selectbox("Kondisi Medis", ["Gangguan tiroid", "Tidak ada", "Radang sendi"])
+meds = st.selectbox("Obat-obatan", ["Kortikosteroid", "Tidak ada"])
+fracture = st.selectbox("Riwayat Patah Tulang", ["Tidak", "Ya"])
 
-# ========== MAPPING ==========
-map_jk = {"Perempuan":0,"Laki-laki":1}
-map_hormon = {"Normal":0,"Pasca menopause":1}
-map_keluarga = {"Tidak":0,"Ya":1}
-map_ras = {"Afrika-Amerika":0,"Asia":1,"Kaukasia":2}
-map_berat = {"Normal":0,"Kurus":1}
-map_kalsium = {"Cukup":0,"Rendah":1}
-map_vitd = {"Tidak cukup":0,"Cukup":1}
-map_aktivitas = {"Aktif":0,"Kurang aktif":1}
-map_rokok = {"Tidak":0,"Ya":1}
-map_alkohol = {"Tidak":0,"Sedang":1}
-map_medis = {"Gangguan tiroid":0,"Tidak ada":1,"Radang sendi":2}
-map_obat = {"Kortikosteroid":0,"Tidak ada":1}
-map_patah = {"Tidak":0,"Ya":1}
+st.markdown("</div>", unsafe_allow_html=True)
 
-data = np.array([[
-    usia,
-    map_jk[jenis_kelamin],
-    map_hormon[perubahan_hormon],
-    map_keluarga[riwayat_keluarga],
-    map_ras[ras],
-    map_berat[berat_badan],
-    map_kalsium[kalsium],
-    map_vitd[vitamin_d],
-    map_aktivitas[aktivitas],
-    map_rokok[merokok],
-    map_alkohol[alkohol],
-    map_medis[kondisi_medis],
-    map_obat[obat],
-    map_patah[patah]
+# ================= MAPPING =================
+map_gender = {"Perempuan":0, "Laki-laki":1}
+map_hormonal = {"Normal":0, "Pasca menopause":1}
+map_family = {"Tidak":0, "Ya":1}
+map_race = {"Afrika-Amerika":0, "Asia":1, "Kaukasia":2}
+map_weight = {"Normal":0, "Kurus":1}
+map_calcium = {"Cukup":0, "Rendah":1}
+map_vitd = {"Tidak cukup":0, "Cukup":1}
+map_activity = {"Aktif":0, "Kurang aktif":1}
+map_smoke = {"Tidak":0, "Ya":1}
+map_alkohol = {"Tidak":0, "Sedang":1}
+map_medical = {"Gangguan tiroid":0, "Tidak ada":1, "Radang sendi":2}
+map_meds = {"Kortikosteroid":0, "Tidak ada":1}
+map_fracture = {"Tidak":0, "Ya":1}
+
+data = np.array([[age,
+    map_gender[gender], map_hormonal[hormonal], map_family[family],
+    map_race[race], map_weight[weight], map_calcium[calcium], map_vitd[vitd],
+    map_activity[activity], map_smoke[smoke], map_alkohol[alkohol],
+    map_medical[medical], map_meds[meds], map_fracture[fracture]
 ]])
 
 data_scaled = scaler.transform(data)
 
-# ========== PREDIKSI ==========
+# ================= HASIL PREDIKSI =================
+st.markdown("<div class='card'>", unsafe_allow_html=True)
 if st.button("Prediksi"):
     hasil = model.predict(data_scaled)[0]
 
-    faktor = []
-    if usia >= 60: faktor.append("usia lanjut")
-    if jenis_kelamin == "Perempuan": faktor.append("jenis kelamin perempuan")
-    if perubahan_hormon == "Pasca menopause": faktor.append("pasca menopause")
-    if riwayat_keluarga == "Ya": faktor.append("riwayat keluarga")
-    if berat_badan == "Kurus": faktor.append("berat badan rendah")
-    if aktivitas == "Kurang aktif": faktor.append("aktivitas fisik rendah")
-    if patah == "Ya": faktor.append("riwayat patah tulang")
-    if merokok == "Ya": faktor.append("merokok")
-    if alkohol == "Sedang": faktor.append("konsumsi alkohol")
-
     if hasil == 1:
-        st.error("❌ Menyebabkan Osteoporosis")
-        st.write("Faktor yang memengaruhi:")
-        for f in faktor:
-            st.write("- ", f)
+        st.error("Mengalami Osteoporosis")
+        st.subheader("Faktor yang Memengaruhi:")
+        if age > 50: st.write("- Usia di atas 50 tahun")
+        if family == "Ya": st.write("- Ada riwayat keluarga")
+        if hormonal == "Pasca menopause": st.write("- Pasca menopause")
+        if weight == "Kurus": st.write("- Berat badan kurus")
+        if calcium == "Rendah": st.write("- Asupan kalsium rendah")
+        if vitd == "Tidak cukup": st.write("- Vitamin D tidak cukup")
+        if activity == "Kurang aktif": st.write("- Aktivitas fisik rendah")
+        if smoke == "Ya": st.write("- Merokok")
+        if alkohol == "Sedang": st.write("- Konsumsi alkohol")
+        if fracture == "Ya": st.write("- Pernah patah tulang")
     else:
-        st.success("✅ Tidak Menyebabkan Osteoporosis")
-        st.write("Faktor risiko besar tidak ditemukan.")
+        st.success("Tidak Mengalami Osteoporosis")
+        st.subheader("Kondisi Relatif Aman:")
+        if age <= 50: st.write("- Usia masih relatif muda")
+        if family == "Tidak": st.write("- Tidak ada riwayat keluarga")
+        if hormonal == "Normal": st.write("- Hormon normal")
+        if weight == "Normal": st.write("- Berat badan normal")
+        if calcium == "Cukup": st.write("- Kalsium cukup")
+        if vitd == "Cukup": st.write("- Vitamin D cukup")
+        if activity == "Aktif": st.write("- Aktivitas fisik baik")
+        if smoke == "Tidak": st.write("- Tidak merokok")
+        if alkohol == "Tidak": st.write("- Tidak konsumsi alkohol")
+        if fracture == "Tidak": st.write("- Tidak pernah patah tulang")
+
+st.markdown("</div>", unsafe_allow_html=True)
